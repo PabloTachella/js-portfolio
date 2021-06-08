@@ -14,6 +14,12 @@ module.exports = {
   },
   resolve: {
     extensions: [".js"],
+    alias: {
+      '@utils': path.resolve(__dirname, 'src/utils/'),
+      '@templates': path.resolve(__dirname, 'src/templates/'),
+      '@styles': path.resolve(__dirname, 'src/styles/'),
+      '@images': path.resolve(__dirname, 'src/assets/images/'),
+    }
   },
   module: {
     rules: [
@@ -45,7 +51,9 @@ module.exports = {
             name: "[name].[contenthash].[ext]",
             // outputPath => donde se va a guardar en la carpeta final
             outputPath: "./assets/fonts/",
-            publicPath: "./assets/fonts/",
+            // uso ../ ya que el css que se encarga de ubicar las fonts una vez empaquetamos
+            // el proyecto, se encontrara dentro de la carpeta assets 
+            publicPath: "../assets/fonts/",
             esModule: false,
           },
         },
